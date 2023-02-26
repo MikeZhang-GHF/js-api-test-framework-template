@@ -81,8 +81,9 @@ describe("POST /users", () => {
       .set("Content-Type", "application/json")
       .send(data)
       .then((res) => {
-        expect(res.body.email).eq(data.email);
-        expect(res.body.status).eq(data.status);
+        // expect(res.body.email).eq(data.email);
+        // expect(res.body.status).eq(data.status);
+        expect(res.body).to.deep.include(data);
       });
   });
 });
