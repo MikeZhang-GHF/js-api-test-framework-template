@@ -7,7 +7,7 @@ import { faker } from "@faker-js/faker";
 const request = supertest("https://gorest.co.in/public/v2");
 
 const TOKEN =
-  "68f36352c03196dc804ee7ccb784037ffcdd09bd8223a6a6a32b836005ba80bb";
+  "bc0c364543ce2dd6d375c1755d361bfe1ca548e5908a295c06385003a5f844b6";
 
 //   methode I with done
 describe("Test Users List", () => {
@@ -37,9 +37,15 @@ describe("Test /users/:id", () => {
     //   expect(res.body.data).to.not.be.empty;
     // });
 
-    return request.get("/users/946").then((res) => {
+    // return request.get("/users/946").then((res) => {
+    //   // console.log(res.body);
+    //   expect(res.body.id).to.eq(946);
+    // });
+
+    const userId = 1012;
+    return request.get(`/users/${userId}`).then((res) => {
       // console.log(res.body);
-      expect(res.body.id).to.equal(946);
+      expect(res.body.id).to.eq(userId);
     });
   });
 
