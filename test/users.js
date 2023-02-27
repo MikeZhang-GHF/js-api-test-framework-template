@@ -1,7 +1,6 @@
 import supertest from "supertest";
 import { expect } from "chai";
 import { faker } from "@faker-js/faker";
-import { it } from "mocha";
 
 
 // const request = supertest("https://gorest.co.in/public-api");
@@ -33,6 +32,7 @@ describe("Test Users List", () => {
 //   methode II without done
 describe("Test /users/:id", () => {
   it("GET /users/:id", () => {
+    // // old version of API
     // return request.get(`/users/946?access-token=${TOKEN}`).then((res) => {
     //   console.log(res.body);
     //   expect(res.body.data).to.not.be.empty;
@@ -83,14 +83,12 @@ describe("POST /users", () => {
       .set("Content-Type", "application/json")
       .send(data)
       .then((res) => {
-        // expect(res.body.email).eq(data.email);
-        // expect(res.body.status).eq(data.status);
         expect(res.body).to.deep.include(data);
       });
   });
 
   // PUT users
-  it.only('PUT /users/:id', () => {
+  it('PUT /users/:id', () => {
     const userId = 1012;
 
     const data = {
@@ -105,4 +103,71 @@ describe("POST /users", () => {
         expect(res.body.status).eq(data.status)
       })
   });
+});
+
+
+// Integration Test
+describe.only('CRUD Test Suites', () => {
+  let userId;
+  // Create User
+  describe('POST /users', () => {
+    it('POST /users', () => {
+      // Create an user
+      const data = {
+        email: faker.internet.email(),
+        name: faker.name.fullName(),
+        gender: faker.name.sex(),
+        status: "active"
+      };
+  
+      return request
+        .post("/users")
+        .set("Authorization", `Bearer ${TOKEN}`)
+        .set("Content-Type", "application/json")
+        .send(data)
+        .then((res) => {
+          expect(res.body).to.deep.include(data);
+          userId = res.body.id;
+        });
+    });
+  });
+
+  // Outside of describe works
+  it("GET /users/:id", () => {
+    return request.get(`/users/${userId}`).then((res) => {
+      expect(res.body.id).to.eq(userId);
+    });
+  }); 
+
+  // PUT
+  describe('PUT', () => {
+    it('PUT /users/:id', () => {
+      const data = {
+        name: faker.name.fullName(),
+        email: faker.internet.email(),
+        status: "inactive"
+      }     
+      
+      return request
+        .put(`/users/${userId}`)
+        .set("Authorization", `Bearer ${TOKEN}`)
+        .send(data)
+        .then((res) => {
+          expect(res.body).deep.include(data);
+        })
+    });   
+  });
+
+  // DELETE
+  describe('DELETE', () => {
+      it('DELETE /users/:id', () => {
+        return request
+          .delete(`/users/${userId}`)
+          .set("Authorization", `Bearer ${TOKEN}`)
+          .then((res) => {
+            expect(res.body).to.be.empty;
+          })
+      });
+  });
+
 });
