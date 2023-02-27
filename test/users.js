@@ -1,6 +1,7 @@
 import supertest from "supertest";
 import { expect } from "chai";
 import { faker } from "@faker-js/faker";
+import { it } from "mocha";
 
 
 // const request = supertest("https://gorest.co.in/public-api");
@@ -35,11 +36,6 @@ describe("Test /users/:id", () => {
     // return request.get(`/users/946?access-token=${TOKEN}`).then((res) => {
     //   console.log(res.body);
     //   expect(res.body.data).to.not.be.empty;
-    // });
-
-    // return request.get("/users/946").then((res) => {
-    //   // console.log(res.body);
-    //   expect(res.body.id).to.eq(946);
     // });
 
     const userId = 1012;
@@ -91,5 +87,22 @@ describe("POST /users", () => {
         // expect(res.body.status).eq(data.status);
         expect(res.body).to.deep.include(data);
       });
+  });
+
+  // PUT users
+  it.only('PUT /users/:id', () => {
+    const userId = 1012;
+
+    const data = {
+      status: "inactive"
+    }
+
+    return request
+      .put(`/users/${userId}`)
+      .set("Authorization", `Bearer ${TOKEN}`)
+      .send(data)
+      .then((res) => {
+        expect(res.body.status).eq(data.status)
+      })
   });
 });
