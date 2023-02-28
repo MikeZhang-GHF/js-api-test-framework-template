@@ -1,4 +1,4 @@
-## This is a demo for JavaScript API test automation framework
+## This is a JavaScript API Test Framework Template
 1. Test Framework
   - Supertest: API request
   - Mocha: test suite execution and mangament
