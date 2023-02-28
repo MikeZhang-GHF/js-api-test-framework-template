@@ -3,7 +3,6 @@ import { expect } from "chai";
 import { faker } from "@faker-js/faker";
 
 
-// const request = supertest("https://gorest.co.in/public-api");
 const request = supertest("https://gorest.co.in/public/v2");
 
 const TOKEN =
