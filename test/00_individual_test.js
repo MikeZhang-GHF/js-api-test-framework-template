@@ -1,9 +1,22 @@
+/**
+ * This is a demo for invidual API testing
+ * using the test framework
+ *    - Supertest - API request libary
+ *    - Mocha - test suite excution and management
+ *    - Chai - test assertion, BDD style - expect, should, TDD style - assert
+ *    - Mochawsome - test result report
+ * 
+ * We use public API https://gorest.co.in/public/v2 for our demo. 
+ * You can go to this website to register and get your own token for your test.
+ * The token in this demo might be expired, you can generate your own and do your
+ * own API testing.
+ */
+
 import supertest from "supertest";
 import { expect } from "chai";
 import { faker } from "@faker-js/faker";
 
 
-// const request = supertest("https://gorest.co.in/public-api");
 const request = supertest("https://gorest.co.in/public/v2");
 
 const TOKEN =
@@ -38,6 +51,7 @@ describe("Test /users/:id", () => {
     //   expect(res.body.data).to.not.be.empty;
     // });
 
+    // version 2 API
     const userId = 1012;
     return request.get(`/users/${userId}`).then((res) => {
       // console.log(res.body);
