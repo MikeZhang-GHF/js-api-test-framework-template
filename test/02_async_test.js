@@ -16,12 +16,14 @@ import { faker } from "@faker-js/faker";
 
 
 const request = supertest("https://gorest.co.in/public/v2");
-const TOKEN =
-  "bc0c364543ce2dd6d375c1755d361bfe1ca548e5908a295c06385003a5f844b6";
+
+// Get the token from provess.env file
+require('dotenv').config();
+const token = process.env.TOKEN;
 
 
 // Async Integration Test
-describe('Async CRUD Test Suites', () => {
+describe.only('Async CRUD Test Suites', () => {
     let userId;
     // Create User
     describe('POST /users', () => {
@@ -36,18 +38,19 @@ describe('Async CRUD Test Suites', () => {
     
         const res = await request
           .post("/users")
-          .set("Authorization", `Bearer ${TOKEN}`)
+          .set("Authorization", `Bearer ${token}`)
           .send(data);
         
         expect(res.body).to.deep.include(data);
         userId = res.body.id;
-        console.log(userId);
+        // console.log(userId);
       });
     });
   
     // Outside of describe works
     it("GET /users/:id", async () => {
       const res = await request.get(`/users/${userId}`);
+      
       expect(res.body.id).to.eq(userId);
     }); 
   
@@ -62,7 +65,7 @@ describe('Async CRUD Test Suites', () => {
         
         const res = await request
           .put(`/users/${userId}`)
-          .set("Authorization", `Bearer ${TOKEN}`)
+          .set("Authorization", `Bearer ${token}`)
           .send(data);
         
         expect(res.body).to.deep.include(data);
@@ -74,9 +77,9 @@ describe('Async CRUD Test Suites', () => {
         it('DELETE /users/:id', async () => {
           const res = await request
             .delete(`/users/${userId}`)
-            .set("Authorization", `Bearer ${TOKEN}`);
+            .set("Authorization", `Bearer ${token}`);
   
-            expect(res.body).to.be.empty;
+          expect(res.body).to.be.empty;
         });
     });
   

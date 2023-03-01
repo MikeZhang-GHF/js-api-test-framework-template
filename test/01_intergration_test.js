@@ -16,8 +16,9 @@ import { faker } from "@faker-js/faker";
 
 const request = supertest("https://gorest.co.in/public/v2");
 
-const TOKEN =
-  "bc0c364543ce2dd6d375c1755d361bfe1ca548e5908a295c06385003a5f844b6";
+// Get the token from provess.env file
+require('dotenv').config();
+const token = process.env.TOKEN;
 
 // Integration Test
 describe('CRUD Test Suites', () => {
@@ -35,7 +36,7 @@ describe('CRUD Test Suites', () => {
   
       return request
         .post("/users")
-        .set("Authorization", `Bearer ${TOKEN}`)
+        .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send(data)
         .then((res) => {
@@ -63,7 +64,7 @@ describe('CRUD Test Suites', () => {
       
       return request
         .put(`/users/${userId}`)
-        .set("Authorization", `Bearer ${TOKEN}`)
+        .set("Authorization", `Bearer ${token}`)
         .send(data)
         .then((res) => {
           expect(res.body).deep.include(data);
@@ -76,7 +77,7 @@ describe('CRUD Test Suites', () => {
       it('DELETE /users/:id', () => {
         return request
           .delete(`/users/${userId}`)
-          .set("Authorization", `Bearer ${TOKEN}`)
+          .set("Authorization", `Bearer ${token}`)
           .then((res) => {
             expect(res.body).to.be.empty;
           })
