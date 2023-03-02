@@ -22,94 +22,94 @@
 
 
 // Template I: Smoke tests for different modules
-describe('Smoke Tests', function() {
+describe('Smoke Tests', () => {
     // Smoke tests for user experience api suite
     describe('user experience api', () => {
-        it('should pass user experience test 1', function() {
+        it('should pass user experience test 1', () => {
         // Test implementation here
         });
     
-        it('should pass user experience test 2', function() {
+        it('should pass user experience test 2', () => {
         // Test implementation here
         });        
     });
 
     // Smoke tests for user loyalty api suite
     describe('user loyalty api', () => {
-        it('should pass user loyalty test 1', function() {
+        it('should pass user loyalty test 1', () => {
         // Test implementation here
         });
     
-        it('should pass user loyalty test 2', function() {
+        it('should pass user loyalty test 2', () => {
         // Test implementation here
         });        
     });
 });
 
   // Template II: group test cases
-describe('Smoke tests', function() {
-    describe('Homepage tests', function() {
+describe('Smoke tests', () => {
+    describe('Homepage tests', () => {
         // smoke test cases for the homepage
-        it('should pass Homepage test 1', function() {
+        it('should pass Homepage test 1', () => {
         // Test implementation here
         });
     
-        it('should pass Homepage test 2', function() {
+        it('should pass Homepage test 2', () => {
         // Test implementation here
         });    
     });
 
-    describe('Login tests', function() {
+    describe('Login tests', () => {
         // smoke test cases for the login functionality
-        it('should pass Login test 1', function() {
+        it('should pass Login test 1', () => {
         // Test implementation here
         });
     
-        it('should pass Login test 2', function() {
+        it('should pass Login test 2', () => {
         // Test implementation here
         });  
     });
 });
   
-describe('Connectivity tests', function() {
-    describe('Endpoints connectivity', function() {
+describe('Connectivity tests', () => {
+    describe('Endpoints connectivity', () => {
         // connectivity test cases for the endpoints
-        it('should pass Endpoints test 1', function() {
+        it('should pass Endpoints test 1', () => {
         // Test implementation here
         });
     
-        it('should pass Endpoints test 2', function() {
+        it('should pass Endpoints test 2', () => {
         // Test implementation here
         }); 
     });
 
-    describe('Database tests', function() {
+    describe('Database tests', () => {
         // connectivity test cases for the database
-        it('should pass database test 1', function() {
+        it('should pass database test 1', () => {
             // Test implementation here
         });
     });
 });
   
-describe('Regression tests', function() {
-    describe('Homepage tests', function() {
+describe('Regression tests', () => {
+    describe('Homepage tests', () => {
         // regression test cases for the homepage
-        it('should pass Homepage test 1', function() {
+        it('should pass Homepage test 1', () => {
         // Test implementation here
         });
     
-        it('should pass Homepage test 2', function() {
+        it('should pass Homepage test 2', () => {
         // Test implementation here
         }); 
     });
 
-    describe('Login tests', function() {
+    describe('Login tests', () => {
         // regression test cases for the login functionality
-        it('should pass Login test 1', function() {
+        it('should pass Login test 1', () => {
         // Test implementation here
         });
     
-        it('should pass Login test 2', function() {
+        it('should pass Login test 2', () => {
         // Test implementation here
         });  
     });
