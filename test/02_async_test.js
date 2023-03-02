@@ -23,7 +23,7 @@ const token = process.env.TOKEN;
 
 
 // Async Integration Test
-describe.only('Async CRUD Test Suites', () => {
+describe('Async CRUD Test Suites', () => {
     let userId;
     // Create User
     describe('POST /users', () => {
