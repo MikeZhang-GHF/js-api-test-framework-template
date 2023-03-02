@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 5000 --parallel"
+    "test": "mocha --timeout 5000",
+    "smoke_test": "mocha --grep \"/Smoke/i\"",
+    "regression_test": "mocha --grep Regression",
+    "multi_groups": "mocha --grep \"Smoke|Regression\""
   },
   "keywords": [],
   "author": "",
